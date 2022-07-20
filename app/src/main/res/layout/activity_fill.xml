@@ -2,49 +2,86 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    tools:context=".FillActivity">
 
-    <Button
-        android:id="@+id/espresso_btn"
+    <EditText
+        android:id="@+id/coffee_fill"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_marginStart="55dp"
         android:layout_marginTop="145dp"
         android:layout_marginEnd="55dp"
-        android:onClick="startBuyActivity"
-        android:text="@string/buy"
+        android:textColor="@color/black"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/coffee_fill"
+        android:textColorHint="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/latte_btn"
+    <EditText
+        android:id="@+id/milk_fill"
         android:layout_width="300dp"
         android:layout_height="70dp"
         android:layout_marginStart="55dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="55dp"
-        android:onClick="startFillActivity"
+        android:textColor="@color/black"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/milk_fill"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coffee_fill" />
+
+    <EditText
+        android:id="@+id/water_fill"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="55dp"
+        android:textColor="@color/black"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/water_fill"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/milk_fill" />
+
+    <EditText
+        android:id="@+id/cup_fill"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="55dp"
+        android:textColor="@color/black"
+        android:ems="10"
+        android:inputType="number"
+        android:hint="@string/cup_fill"
+        android:textColorHint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/water_fill" />
+
+    <Button
+        android:id="@+id/fill_btn"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="55dp"
         android:text="@string/fill"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/espresso_btn" />
-
-    <Button
-        android:id="@+id/cappuccino_btn"
-        android:layout_width="300dp"
-        android:layout_height="70dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="55dp"
-        android:onClick="startTakeActivity"
-        android:text="@string/take"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/latte_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/cup_fill" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -134,4 +171,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="55dp"
+        android:onClick="startMainActivity"
+        android:text="@string/back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fill_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>

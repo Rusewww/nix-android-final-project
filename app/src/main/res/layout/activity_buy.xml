@@ -2,10 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".MainActivity">
+    tools:context=".BuyActivity">
 
     <Button
         android:id="@+id/espresso_btn"
@@ -14,8 +14,7 @@
         android:layout_marginStart="55dp"
         android:layout_marginTop="145dp"
         android:layout_marginEnd="55dp"
-        android:onClick="startBuyActivity"
-        android:text="@string/buy"
+        android:text="@string/espresso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,8 +26,7 @@
         android:layout_marginStart="55dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="55dp"
-        android:onClick="startFillActivity"
-        android:text="@string/fill"
+        android:text="@string/latte"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/espresso_btn" />
@@ -40,8 +38,7 @@
         android:layout_marginStart="55dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="55dp"
-        android:onClick="startTakeActivity"
-        android:text="@string/take"
+        android:text="@string/cappuccino"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/latte_btn" />
@@ -134,4 +131,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <Button
+        android:id="@+id/back_button"
+        android:layout_width="300dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="55dp"
+        android:onClick="startMainActivity"
+        android:text="@string/back"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.962"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cappuccino_btn" />
 </androidx.constraintlayout.widget.ConstraintLayout>
