@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">nix-android-final-project</string>
+    <string name="buy">Buy coffee</string>
+    <string name="fill">Fill</string>
+    <string name="take">Take money</string>
+    <string name="info">Info</string>
+    <string name="info_icon">0ml</string>
+    <string name="espresso">Espresso</string>
+    <string name="latte">Latte</string>
+    <string name="cappuccino">Cappuccino</string>
+    <string name="back">Back</string>
+    <string name="coffee_fill">Coffee beans</string>
+    <string name="milk_fill">Milk</string>
+    <string name="water_fill">Water</string>
+    <string name="cup_fill">Cup</string>
 </resources>
