@@ -13,4 +13,5 @@
     <string name="milk_fill">Milk</string>
     <string name="water_fill">Water</string>
     <string name="cup_fill">Cup</string>
+    <string name="empty"> </string>
 </resources>
