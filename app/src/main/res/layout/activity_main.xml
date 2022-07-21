@@ -8,69 +8,41 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/cappuccino_btn"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="55dp"
-        android:text="@string/cappuccino"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/latte_btn" />
-
-    <Button
-        android:id="@+id/latte_btn"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="55dp"
-        android:text="@string/latte"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/espresso_btn" />
-
-    <Button
         android:id="@+id/espresso_btn"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="55dp"
+        android:onClick="buyEspresso"
         android:text="@string/espresso"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/cup_fill"
+    <Button
+        android:id="@+id/take_btn"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="55dp"
-        android:ems="10"
-        android:hint="@string/cup_fill"
-        android:inputType="number"
-        android:textColor="@color/black"
-        android:textColorHint="@color/gray"
+        android:onClick="take"
+        android:text="@string/take"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cappuccino_btn"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/fill_btn" />
 
     <EditText
         android:id="@+id/coffee_fill"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="55dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/coffee_fill"
         android:inputType="number"
@@ -79,34 +51,34 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/milk_fill"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/milk_fill" />
 
     <EditText
         android:id="@+id/water_fill"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="55dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/water_fill"
         android:inputType="number"
         android:textColor="@color/black"
         android:textColorHint="@color/gray"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cup_fill"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/cup_fill" />
 
     <EditText
         android:id="@+id/milk_fill"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="55dp"
+        android:autofillHints=""
         android:ems="10"
         android:hint="@string/milk_fill"
         android:inputType="number"
@@ -115,72 +87,118 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/water_fill"
-        android:autofillHints="" />
-
-    <Button
-        android:id="@+id/fill_btn"
-        android:layout_width="300dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="55dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="55dp"
-        android:text="@string/fill"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coffee_fill" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="20dp"
-        android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toTopOf="@+id/coffee_text"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/coffee_beans" />
+        app:layout_constraintTop_toBottomOf="@+id/water_fill" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="10dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toTopOf="@+id/cup_text"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@mipmap/coffee_cup" />
 
     <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="10dp"
+        android:contentDescription="@string/app_name"
+        app:layout_constraintBottom_toTopOf="@+id/water_text"
+        app:layout_constraintEnd_toStartOf="@+id/imageView2"
+        app:srcCompat="@mipmap/water" />
+
+    <ImageView
         android:id="@+id/imageView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="10dp"
         android:contentDescription="@string/app_name"
         app:layout_constraintBottom_toTopOf="@+id/milk_text"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:srcCompat="@mipmap/milk" />
 
+    <Button
+        android:id="@+id/fill_btn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="55dp"
+        android:onClick="fill"
+        android:text="@string/fill"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coffee_fill" />
+
+    <Button
+        android:id="@+id/cappuccino_btn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="55dp"
+        android:onClick="buyCappuccino"
+        android:text="@string/cappuccino"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/latte_btn" />
+
+    <Button
+        android:id="@+id/latte_btn"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="55dp"
+        android:onClick="buyLatte"
+        android:text="@string/latte"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/espresso_btn" />
+
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="10dp"
         android:contentDescription="@string/app_name"
-        app:layout_constraintBottom_toTopOf="@+id/water_text"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:srcCompat="@mipmap/water" />
+        app:layout_constraintBottom_toTopOf="@+id/coffee_text"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/coffee_beans" />
+
+    <EditText
+        android:id="@+id/cup_fill"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="55dp"
+        android:autofillHints=""
+        android:ems="10"
+        android:hint="@string/cup_fill"
+        android:inputType="number"
+        android:textColor="@color/black"
+        android:textColorHint="@color/gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cappuccino_btn" />
 
     <TextView
         android:id="@+id/coffee_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="52dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="30dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -189,8 +207,8 @@
         android:id="@+id/milk_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="72dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginBottom="30dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/coffee_text" />
@@ -199,8 +217,8 @@
         android:id="@+id/water_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="80dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginEnd="65dp"
+        android:layout_marginBottom="30dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cup_text" />
@@ -210,21 +228,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="61dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginBottom="30dp"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
-    <Button
-        android:id="@+id/take_btn"
+    <TextView
+        android:id="@+id/info_text"
         android:layout_width="300dp"
         android:layout_height="60dp"
         android:layout_marginStart="55dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="55dp"
-        android:text="@string/take"
+        android:textColor="@color/black"
+        android:text="@string/empty"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fill_btn" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
