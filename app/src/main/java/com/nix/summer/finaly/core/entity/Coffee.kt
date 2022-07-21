@@ -1,4 +1,4 @@
-package com.nix.summer.finaly
+package com.nix.summer.finaly.core.entity
 
 enum class Coffee(val water: Int, val milk: Int, val coffeeBeans: Int, val money: Int) {
     ESPRESSO(250, 0, 15, 4),

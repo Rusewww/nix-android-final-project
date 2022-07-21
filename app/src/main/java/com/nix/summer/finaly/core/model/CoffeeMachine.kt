@@ -1,13 +1,8 @@
-package com.nix.summer.finaly
+package com.nix.summer.finaly.core.model
 
-data class Response(var responseString: String, val ingredients: Ingredients)
-
-data class Ingredients(
-    var water: Int = 0,
-    var milk: Int = 0,
-    var coffee: Int = 0,
-    var disposableCups: Int = 0
-)
+import com.nix.summer.finaly.core.entity.Coffee
+import com.nix.summer.finaly.core.entity.Ingredients
+import com.nix.summer.finaly.core.entity.Response
 
 class CoffeeMachine(
     private var water: Int,
