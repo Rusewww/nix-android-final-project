@@ -1,4 +1,4 @@
-package com.nix.summer.finaly.adapters
+package com.nix.summer.finaly.ui.adapters
 
 import com.nix.summer.finaly.core.entity.Response
 
