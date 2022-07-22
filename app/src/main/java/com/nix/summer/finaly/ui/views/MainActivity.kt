@@ -1,18 +1,20 @@
-package com.nix.summer.finaly.ui
+package com.nix.summer.finaly.ui.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.nix.summer.finaly.*
-import com.nix.summer.finaly.adapters.Contract
-import com.nix.summer.finaly.adapters.MainPresenter
+import com.nix.summer.finaly.ui.adapters.Contract
+import com.nix.summer.finaly.ui.adapters.MainPresenter
 import com.nix.summer.finaly.core.entity.Coffee
 import com.nix.summer.finaly.core.entity.Ingredients
 import com.nix.summer.finaly.core.entity.Response
-import com.nix.summer.finaly.core.model.CoffeeMachine
+import com.nix.summer.finaly.core.interactors.BuyCoffeeInteractor
+import com.nix.summer.finaly.core.interactors.FillResourcesInteractor
+import com.nix.summer.finaly.core.interactors.TakeMoneyInteractor
+import com.nix.summer.finaly.data.repository.FakeActionRepositoryImplementation
 
 class MainActivity : AppCompatActivity(), Contract.View {
     private lateinit var infoView: TextView
@@ -32,7 +34,11 @@ class MainActivity : AppCompatActivity(), Contract.View {
     lateinit var takeButton: Button
     lateinit var fillButton: Button
 
-    private var presenter = MainPresenter(CoffeeMachine(400, 540, 120, 9, 550))
+    private var presenter = MainPresenter(
+        BuyCoffeeInteractor(FakeActionRepositoryImplementation()),
+        TakeMoneyInteractor(FakeActionRepositoryImplementation()),
+        FillResourcesInteractor(FakeActionRepositoryImplementation())
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,7 +51,6 @@ class MainActivity : AppCompatActivity(), Contract.View {
         fill(this)
         take(this)
 
-        presenter.start()
     }
 
     private fun buyEspresso(view: MainActivity) {
@@ -87,6 +92,7 @@ class MainActivity : AppCompatActivity(), Contract.View {
             )
         }
     }
+
 
     fun take(view: MainActivity) {
         takeButton = findViewById(R.id.take_btn)
