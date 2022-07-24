@@ -9,6 +9,7 @@ class Contract {
         fun showEspressoCost(response: Response)
         fun showLatteCost(response: Response)
         fun showCappuccinoCost(response: Response)
+        fun showPayment(response: Response)
     }
 
     interface Presenter {

@@ -277,6 +277,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="55dp"
         android:backgroundTint="@color/main"
+        android:onClick="loadPayment"
         android:text="@string/cart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
