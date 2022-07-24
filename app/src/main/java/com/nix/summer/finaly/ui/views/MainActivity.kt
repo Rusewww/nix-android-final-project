@@ -8,16 +8,15 @@ import com.nix.summer.finaly.ui.adapters.Contract
 import com.nix.summer.finaly.ui.adapters.MainPresenter
 import com.nix.summer.finaly.core.entity.Coffee
 import com.nix.summer.finaly.core.entity.Ingredients
-import com.nix.summer.finaly.core.entity.Payment
 import com.nix.summer.finaly.core.entity.Response
-import com.nix.summer.finaly.core.interactors.BuyCoffeeInteractor
-import com.nix.summer.finaly.core.interactors.ExchangeCurrencyInteractor
-import com.nix.summer.finaly.core.interactors.FillResourcesInteractor
-import com.nix.summer.finaly.core.interactors.TakeMoneyInteractor
+import com.nix.summer.finaly.core.interactors.*
+import com.nix.summer.finaly.data.database.Database
+import com.nix.summer.finaly.data.mappers.DatabasePaymentToPaymentMapper
 import com.nix.summer.finaly.data.mappers.NetworkPaymentToPaymentMapper
+import com.nix.summer.finaly.data.mappers.PaymentToDatabasePaymentMapper
 import com.nix.summer.finaly.data.network.Network
 import com.nix.summer.finaly.data.repository.FakeActionRepositoryImplementation
-import com.nix.summer.finaly.data.repository.FakeExchangeRepositoryImplementation
+import com.nix.summer.finaly.data.repository.PaymentRepositoryImplementation
 
 class MainActivity : AppCompatActivity(), Contract.View {
     private lateinit var infoView: TextView
@@ -41,19 +40,25 @@ class MainActivity : AppCompatActivity(), Contract.View {
     private lateinit var takeButton: Button
     private lateinit var fillButton: Button
 
+    private lateinit var cartButton: Button
+
     private lateinit var paymentSwitch: Switch
 
     private val presenter by lazy {
-        val repository = FakeExchangeRepositoryImplementation(
+        val repository = PaymentRepositoryImplementation(
             Network.api,
-            NetworkPaymentToPaymentMapper()
+            NetworkPaymentToPaymentMapper(),
+            Database.provideDao(baseContext),
+            DatabasePaymentToPaymentMapper(),
+            PaymentToDatabasePaymentMapper()
         )
 
         MainPresenter(
             BuyCoffeeInteractor(FakeActionRepositoryImplementation()),
             TakeMoneyInteractor(FakeActionRepositoryImplementation()),
             FillResourcesInteractor(FakeActionRepositoryImplementation()),
-            ExchangeCurrencyInteractor(repository)
+            ExchangeCurrencyInteractor(repository),
+            LoadPaymentInteractor(repository)
         )
     }
 
@@ -69,6 +74,7 @@ class MainActivity : AppCompatActivity(), Contract.View {
         fill(this)
         take(this)
         showCost(this)
+        loadPayment(this)
 
     }
 
@@ -171,4 +177,15 @@ class MainActivity : AppCompatActivity(), Contract.View {
         }
     }
 
+    override fun showPayment(response: Response) {
+        infoView = findViewById(R.id.info_text)
+        infoView.text = response.responseString
+    }
+
+    fun loadPayment(view: MainActivity) {
+        cartButton = findViewById(R.id.cart_btn)
+        cartButton.setOnClickListener {
+            presenter.addPayment()
+        }
+    }
 }

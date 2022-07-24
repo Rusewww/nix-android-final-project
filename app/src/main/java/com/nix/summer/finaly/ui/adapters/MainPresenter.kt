@@ -1,13 +1,7 @@
 package com.nix.summer.finaly.ui.adapters
 
-import com.nix.summer.finaly.core.entity.Coffee
-import com.nix.summer.finaly.core.entity.Ingredients
-import com.nix.summer.finaly.core.entity.Payment
-import com.nix.summer.finaly.core.entity.Response
-import com.nix.summer.finaly.core.interactors.BuyCoffeeInteractor
-import com.nix.summer.finaly.core.interactors.ExchangeCurrencyInteractor
-import com.nix.summer.finaly.core.interactors.FillResourcesInteractor
-import com.nix.summer.finaly.core.interactors.TakeMoneyInteractor
+import com.nix.summer.finaly.core.entity.*
+import com.nix.summer.finaly.core.interactors.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.*
@@ -18,6 +12,7 @@ class MainPresenter(
     private var takeInteractor: TakeMoneyInteractor,
     private var fillInteractor: FillResourcesInteractor,
     private val exchangeCurrencyInteractor: ExchangeCurrencyInteractor,
+    private val loadPaymentInteractor: LoadPaymentInteractor
 ) : Contract.Presenter, CoroutineScope {
 
     private var view: Contract.View? = null
@@ -56,15 +51,24 @@ class MainPresenter(
     }
 
     fun exchangePayment(currency: String) {
+        var response: Response
         launch {
-            var response = exchangeCurrencyInteractor(Payment(Coffee.ESPRESSO.money, currency))
+            response = exchangeCurrencyInteractor(Payment(null, Coffee.ESPRESSO.money, currency))
             view?.showEspressoCost(response)
-            response = exchangeCurrencyInteractor(Payment(Coffee.CAPPUCCINO.money, currency))
-            view?.showCappuccinoCost(response)
-            response = exchangeCurrencyInteractor(Payment(Coffee.LATTE.money, currency))
+            response = exchangeCurrencyInteractor(Payment(null, Coffee.LATTE.money, currency))
             view?.showLatteCost(response)
+            response = exchangeCurrencyInteractor(Payment(null, Coffee.CAPPUCCINO.money, currency))
+            view?.showCappuccinoCost(response)
         }
     }
 
+    fun addPayment() {
+        launch {
+            val response = loadPaymentInteractor()
+            withContext(Dispatchers.Main) {
+                view?.showPayment(response)
+            }
+        }
+    }
 
 }
