@@ -1,5 +1,6 @@
 # Nix Summer Practice Final Project
 Summer practice in NIX 04.07.2022-25.07.2022
+<br>
 <img src="./images/nix_ua_logo.png" style="border-radius:15px; padding:10px;">
 
 ## Technologies
@@ -23,5 +24,5 @@ Coffee machine shop app for android.
 
 ## Interface
 
-<img src="./images/UAH_Screen.jpg" style="border-radius:15px; padding:10px;">
-<img src="./images/USD_Screen.jpg" style="border-radius:15px; padding:10px;">
+<img src="./images/UAH_Screen.jpg" style="width:400px; border-radius:15px; padding:10px;">
+<img src="./images/USD_Screen.jpg" style="width:400px; border-radius:15px; padding:10px;">
