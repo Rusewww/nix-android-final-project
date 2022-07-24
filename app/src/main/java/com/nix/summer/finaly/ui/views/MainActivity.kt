@@ -2,19 +2,22 @@ package com.nix.summer.finaly.ui.views
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
-import android.widget.EditText
-import android.widget.TextView
+import android.widget.*
 import com.nix.summer.finaly.*
 import com.nix.summer.finaly.ui.adapters.Contract
 import com.nix.summer.finaly.ui.adapters.MainPresenter
 import com.nix.summer.finaly.core.entity.Coffee
 import com.nix.summer.finaly.core.entity.Ingredients
+import com.nix.summer.finaly.core.entity.Payment
 import com.nix.summer.finaly.core.entity.Response
 import com.nix.summer.finaly.core.interactors.BuyCoffeeInteractor
+import com.nix.summer.finaly.core.interactors.ExchangeCurrencyInteractor
 import com.nix.summer.finaly.core.interactors.FillResourcesInteractor
 import com.nix.summer.finaly.core.interactors.TakeMoneyInteractor
+import com.nix.summer.finaly.data.mappers.NetworkPaymentToPaymentMapper
+import com.nix.summer.finaly.data.network.Network
 import com.nix.summer.finaly.data.repository.FakeActionRepositoryImplementation
+import com.nix.summer.finaly.data.repository.FakeExchangeRepositoryImplementation
 
 class MainActivity : AppCompatActivity(), Contract.View {
     private lateinit var infoView: TextView
@@ -23,22 +26,37 @@ class MainActivity : AppCompatActivity(), Contract.View {
     private lateinit var coffeeView: TextView
     private lateinit var cupView: TextView
 
+    private lateinit var espressoCost: TextView
+    private lateinit var latteCost: TextView
+    private lateinit var cappuccinoCost: TextView
+
     private lateinit var waterFill: EditText
     private lateinit var milkFill: EditText
     private lateinit var coffeeFill: EditText
     private lateinit var cupFill: EditText
 
-    lateinit var espressoButton: Button
-    lateinit var cappuccinoButton: Button
-    lateinit var latteButton: Button
-    lateinit var takeButton: Button
-    lateinit var fillButton: Button
+    private lateinit var espressoButton: ImageButton
+    private lateinit var cappuccinoButton: ImageButton
+    private lateinit var latteButton: ImageButton
+    private lateinit var takeButton: Button
+    private lateinit var fillButton: Button
 
-    private var presenter = MainPresenter(
-        BuyCoffeeInteractor(FakeActionRepositoryImplementation()),
-        TakeMoneyInteractor(FakeActionRepositoryImplementation()),
-        FillResourcesInteractor(FakeActionRepositoryImplementation())
-    )
+    private lateinit var paymentSwitch: Switch
+
+    private val presenter by lazy {
+        val repository = FakeExchangeRepositoryImplementation(
+            Network.api,
+            NetworkPaymentToPaymentMapper()
+        )
+
+        MainPresenter(
+            BuyCoffeeInteractor(FakeActionRepositoryImplementation()),
+            TakeMoneyInteractor(FakeActionRepositoryImplementation()),
+            FillResourcesInteractor(FakeActionRepositoryImplementation()),
+            ExchangeCurrencyInteractor(repository)
+        )
+    }
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -50,6 +68,7 @@ class MainActivity : AppCompatActivity(), Contract.View {
         buyLatte(this)
         fill(this)
         take(this)
+        showCost(this)
 
     }
 
@@ -94,10 +113,32 @@ class MainActivity : AppCompatActivity(), Contract.View {
     }
 
 
-    fun take(view: MainActivity) {
+    private fun take(view: MainActivity) {
         takeButton = findViewById(R.id.take_btn)
         takeButton.setOnClickListener {
             presenter.getCommand("take", Ingredients())
+        }
+    }
+
+    override fun showEspressoCost(response: Response) {
+        espressoCost = findViewById(R.id.espresso_text_cost)
+        espressoCost.text = response.responseString
+    }
+
+    override fun showLatteCost(response: Response) {
+        latteCost = findViewById(R.id.latte_text_cost)
+        latteCost.text = response.responseString
+    }
+
+    override fun showCappuccinoCost(response: Response) {
+        cappuccinoCost = findViewById(R.id.cappuccino_text_cost)
+        cappuccinoCost.text = response.responseString
+    }
+
+    private fun showCost(mainActivity: MainActivity) {
+        paymentSwitch = findViewById(R.id.money_switch)
+        paymentSwitch.setOnClickListener {
+            presenter.exchangePayment(checkSwitch())
         }
     }
 
@@ -120,4 +161,14 @@ class MainActivity : AppCompatActivity(), Contract.View {
         cupView = findViewById(R.id.cup_text)
         cupView.text = response.ingredients.disposableCups.toString()
     }
+
+    private fun checkSwitch(): String {
+        paymentSwitch = findViewById(R.id.money_switch)
+        return if (!paymentSwitch.isChecked) {
+            "UAH"
+        } else {
+            "USD"
+        }
+    }
+
 }

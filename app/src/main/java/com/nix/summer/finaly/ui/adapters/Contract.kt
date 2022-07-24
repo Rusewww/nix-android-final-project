@@ -6,6 +6,9 @@ class Contract {
 
     interface View {
         fun showInfo(response: Response)
+        fun showEspressoCost(response: Response)
+        fun showLatteCost(response: Response)
+        fun showCappuccinoCost(response: Response)
     }
 
     interface Presenter {

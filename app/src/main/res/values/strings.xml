@@ -14,4 +14,7 @@
     <string name="water_fill">Water</string>
     <string name="cup_fill">Cup</string>
     <string name="empty"> </string>
+    <string name="switch_text">UAH to USD</string>
+    <string name="cart">Cart</string>
+    <string name="cost"> </string>
 </resources>
