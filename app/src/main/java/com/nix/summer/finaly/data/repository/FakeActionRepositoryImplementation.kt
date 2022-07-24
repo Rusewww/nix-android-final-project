@@ -10,7 +10,7 @@ class FakeActionRepositoryImplementation : ActionRepository {
         var milk = 0
         var coffee = 0
         var disposableCups = 0
-        var money = 0
+        var money: Float = 0.0f
     }
 
     private fun check(coffeeType: String): Boolean {
@@ -74,10 +74,15 @@ class FakeActionRepositoryImplementation : ActionRepository {
 
     override fun take(): Response {
         val out = CoffeeMachine.money
-        CoffeeMachine.money = 0
+        CoffeeMachine.money = 0.0f
         return Response(
-            "I gave you $out UAH!",
-            Ingredients(CoffeeMachine.water, CoffeeMachine.milk, CoffeeMachine.coffee, CoffeeMachine.disposableCups)
+            "I gave you $out",
+            Ingredients(
+                CoffeeMachine.water,
+                CoffeeMachine.milk,
+                CoffeeMachine.coffee,
+                CoffeeMachine.disposableCups
+            )
         )
     }
 }
